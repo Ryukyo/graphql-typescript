@@ -1,6 +1,16 @@
-# graphql-typescript
+# Product API
 
-API with PostgreSQL
+API with PostgreSQL, Typescript, TypeORM and Type-GraphQL
+
+## Getting Started
+
+Install all required dependencies:\
+
+```
+npm install
+```
+
+## Sample Queries and Mutations
 
 Create Product
 
