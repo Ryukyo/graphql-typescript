@@ -20,9 +20,9 @@ const config: ConnectionOptions = {
     "database": DB_NAME,
     "synchronize": true,
     "logging": true,
-    "entities": [`dist/src/entity/**/*.{ts, js}`],
-    "migrations": [`dist/src/migration/**/*.{ts, js}`],
-    "subscribers": ["dist/src/subscriber/**/*.{ts, js}"],
+    "entities": [`src/database/entity/**/*.{ts, js}`],
+    "migrations": [`src/database/migration/**/*.{ts, js}`],
+    "subscribers": [`src/database/subscriber/**/*.{ts, js}`],
     "cli": {
       "entitiesDir": "dist/src/database/entity",
       "migrationsDir": "dist/src/database/migration",
