@@ -4,7 +4,7 @@ API with PostgreSQL, Typescript, TypeORM and Type-GraphQL
 
 ## Getting Started
 
-Install all required dependencies:\
+Install all required dependencies:
 
 ```
 npm install
