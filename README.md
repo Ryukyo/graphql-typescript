@@ -4,11 +4,22 @@ API with PostgreSQL, Typescript, TypeORM and Type-GraphQL
 
 ## Getting Started
 
+.env File required to fill the variables in ormconfig.ts
+
 Install all required dependencies:
 
 ```
 npm install
 ```
+
+Start the development server
+
+```
+npm run dev
+```
+
+Default address:\
+http://localhost:5000/graphql
 
 ## Sample Queries and Mutations
 
