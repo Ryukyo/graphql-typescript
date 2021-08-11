@@ -9,20 +9,22 @@ export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
   @Query(() => [Product], { nullable: true })
-  async getProducts(): Promise<Product[]> {
-    return await this.productService.getAll();
+  async getProducts(
+    @Arg('sorting', {nullable: true})  inputParameter: "name" | "createdAt",
+    @Arg('direction', {nullable: true, defaultValue: "ASC"}) inputDirection: "ASC" | "DESC"): Promise<Product[]> {
+    return this.productService.getAll({parameter: inputParameter, direction: inputDirection});
   }
 
   @Query(() => Product, { nullable: true })
   async getProduct(@Arg('id') id: number): Promise<Product | undefined> {
-    return await this.productService.getOne(id);
+    return this.productService.getOne(id);
   }
 
   @Mutation(() => Product)
   async addProduct(
     @Arg('ProductInput') createProductInput: CreateProductInput,
   ): Promise<Product> {
-    return await this.productService.create(createProductInput);
+    return this.productService.create(createProductInput);
   }
 
   @Mutation(() => Product)
@@ -30,11 +32,11 @@ export class ProductResolver {
     @Arg('id') id: number,
     @Arg('ProductInput') updateProductInput: UpdateProductInput,
   ): Promise<Product> {
-    return await this.productService.update(id, updateProductInput);
+    return this.productService.update(id, updateProductInput);
   }
 
   @Mutation(() => Boolean)
   async deleteProduct(@Arg('id') id: number): Promise<boolean> {
-    return await this.productService.delete(id);
+    return this.productService.delete(id);
   }
 }

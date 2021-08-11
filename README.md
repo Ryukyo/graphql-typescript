@@ -12,7 +12,7 @@ npm install
 
 ## Sample Queries and Mutations
 
-Create Product
+Create product
 
 ```
 mutation {
@@ -30,7 +30,7 @@ mutation {
 }
 ```
 
-Get Products
+Get products
 
 ```
 query {
@@ -41,7 +41,17 @@ query {
 }
 ```
 
-Get Product By Id
+Get products sorted by name/date with direction
+
+```
+query {
+  getProducts(sorting: "name", direction: "DESC") {
+    name
+  }
+}
+```
+
+Get product by id
 
 ```
 query {
@@ -52,7 +62,7 @@ query {
 }
 ```
 
-Update Product by Id
+Update product by id
 
 ```
 mutation {
@@ -67,7 +77,7 @@ mutation {
 }
 ```
 
-Delete Product By Id
+Delete product by id
 
 ```
 mutation {

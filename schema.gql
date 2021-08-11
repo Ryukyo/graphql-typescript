@@ -28,7 +28,7 @@ type Product {
 
 type Query {
   getProduct(id: Float!): Product
-  getProducts: [Product!]
+  getProducts(direction: String = "ASC", sorting: String): [Product!]
 }
 
 input UpdateProductInput {
