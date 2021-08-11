@@ -9,11 +9,19 @@ interface Sorting {
 
 @Service()
 export class ProductService {
-  getAll = async (sorting? : Sorting): Promise<Product[]> => {
+  getAll = async (sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
+    // pagination = 
     if (sorting?.parameter === "createdAt") {
       return Product.find({order: {createdAt : sorting.direction}});
-    } else if (sorting?.parameter === "name") {
+    } 
+    if (sorting?.parameter === "name") {
       return Product.find({order: {name : sorting.direction}});
+    }
+    if (skip) {
+      return Product.find({skip : skip});
+    }
+    if (take) {
+      return Product.find({take: take});
     }
     return Product.find();
   };

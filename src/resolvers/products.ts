@@ -11,8 +11,11 @@ export class ProductResolver {
   @Query(() => [Product], { nullable: true })
   async getProducts(
     @Arg('sorting', {nullable: true})  inputParameter: "name" | "createdAt",
-    @Arg('direction', {nullable: true, defaultValue: "ASC"}) inputDirection: "ASC" | "DESC"): Promise<Product[]> {
-    return this.productService.getAll({parameter: inputParameter, direction: inputDirection});
+    @Arg('direction', {nullable: true, defaultValue: "ASC"}) inputDirection: "ASC" | "DESC",
+    @Arg('offset', {nullable: true, defaultValue: 0}) skip: number,
+    @Arg('limit', {nullable: true, defaultValue: 0}) take: number
+    ): Promise<Product[]> {
+    return this.productService.getAll({parameter: inputParameter, direction: inputDirection}, skip, take);
   }
 
   @Query(() => Product, { nullable: true })
