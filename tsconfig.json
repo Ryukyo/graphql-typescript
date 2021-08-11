@@ -7,10 +7,10 @@
       "outDir": "./dist",
       "moduleResolution": "node",
       "declaration": false,
-  
       "composite": false,
       "removeComments": true,
       "noImplicitAny": true,
+      "strict": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
       "noImplicitThis": true,
@@ -22,6 +22,9 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "skipLibCheck": true,
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "typeRoots": ["./node_modules/@types"],
       "baseUrl": ".",
       "rootDir": "src"
     },
