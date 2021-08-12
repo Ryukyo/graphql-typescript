@@ -10,19 +10,20 @@ interface Sorting {
 @Service()
 export class ProductService {
   getAll = async (sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
-    // pagination = 
+    let pagination = {
+      ...skip && { skip: skip },
+      ...take && { take: take },
+    }
     if (sorting?.parameter === "createdAt") {
-      return Product.find({order: {createdAt : sorting.direction}});
+      return Product.find({order: {createdAt : sorting.direction}, skip, take});
     } 
     if (sorting?.parameter === "name") {
-      return Product.find({order: {name : sorting.direction}});
+      return Product.find({order: {name : sorting.direction}, skip, take});
     }
-    if (skip) {
-      return Product.find({skip : skip});
+    if (skip || take) {
+      return Product.find(pagination);
     }
-    if (take) {
-      return Product.find({take: take});
-    }
+
     return Product.find();
   };
 

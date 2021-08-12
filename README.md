@@ -52,12 +52,13 @@ query {
 }
 ```
 
-Get products sorted by name/date with direction
+Get products sorted by name/date with direction and pagination
 
 ```
-query {
-  getProducts(sorting: "name", direction: "DESC") {
+query Query {
+  getProducts(sorting: "createdAt", direction: "DESC", limit: 1, offset: 2) {
     name
+    createdAt
   }
 }
 ```
