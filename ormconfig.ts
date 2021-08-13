@@ -24,9 +24,9 @@ const config: ConnectionOptions = {
     "migrations": [`src/database/migration/**/*.{ts, js}`],
     "subscribers": [`src/database/subscriber/**/*.{ts, js}`],
     "cli": {
-      "entitiesDir": "dist/src/database/entity",
-      "migrationsDir": "dist/src/database/migration",
-      "subscribersDir": "dist/src/database/subscriber"
+      "entitiesDir": "src/database/entity",
+      "migrationsDir": "src/database/migration",
+      "subscribersDir": "src/database/subscriber"
     }
 };
 
