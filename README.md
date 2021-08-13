@@ -16,6 +16,12 @@ DB_USER =
 DB_PASS =
 ```
 
+For using Docker (requires local Docker installation):
+
+```
+docker-compose up --build -d
+```
+
 Install all required dependencies:
 
 ```
