@@ -4,9 +4,10 @@ import {
     Column,
     BaseEntity,
     CreateDateColumn,
+    ManyToMany,
+    JoinTable
   } from 'typeorm';
-
-//   import {Tag} from './Tag'
+import {Tag} from './Tag'
   
   @Entity()
   export class Product extends BaseEntity {
@@ -16,10 +17,9 @@ import {
     @Column()
     name!: string;
   
-    // @OneToMany(type => Tag, tag => tag.name)
-    // @Column({ type: () => [Tag]})
-    @Column({ type: 'text', array: true })
-    tags!: string[];
+    @ManyToMany(() => Tag)
+    @JoinTable()
+    tags!: Tag[];
   
     @CreateDateColumn({ name: 'created_at' })
     createdAt!: Date;

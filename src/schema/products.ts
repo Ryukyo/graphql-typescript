@@ -1,6 +1,6 @@
 import { Field, ObjectType, InputType } from 'type-graphql';
 import { Length } from 'class-validator';
-
+import {Tag} from './tags'
 
 @ObjectType()
 export class Product {
@@ -11,9 +11,8 @@ export class Product {
   name!: string;
 
 
-//   @Field({ type: () => [Tag]})
-  @Field(() => [String])
-  tags!: string[];
+  @Field(_TagInput => [Tag], {nullable: true})
+  tags!: Tag[];
 
 
   @Field()
@@ -26,8 +25,8 @@ export class CreateProductInput implements Partial<Product> {
   @Length(2, 50)
   name!: string;
 
-  @Field(() => [String])
-  tags!: string[];
+  @Field(_type => [Tag], { nullable: true })
+  tags?: Tag[];
 }
 
 @InputType()
@@ -36,6 +35,6 @@ export class UpdateProductInput implements Partial<Product> {
   @Length(2, 50)
   name?: string;
 
-  @Field(() => [String], { nullable: true })
-  tags?: string[];
+  @Field(() => [Tag], { nullable: true })
+  tags?: Tag[];
 }

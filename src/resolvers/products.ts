@@ -2,6 +2,7 @@ import { Query, Resolver, Mutation, Arg } from 'type-graphql';
 import { Service } from 'typedi';
 import { Product, CreateProductInput, UpdateProductInput } from '../schema/products';
 import { ProductService } from '../database/services/productService';
+import { Tag } from '../schema/tags';
 
 @Service()
 @Resolver(() => Product)
@@ -10,12 +11,13 @@ export class ProductResolver {
 
   @Query(() => [Product], { nullable: true })
   async getProducts(
+    @Arg('tags', {nullable: true})  filteredTag: Tag,
     @Arg('sorting', {nullable: true})  inputParameter: "name" | "createdAt",
     @Arg('direction', {nullable: true, defaultValue: "ASC"}) inputDirection: "ASC" | "DESC",
     @Arg('offset', {nullable: true, defaultValue: 0}) skip: number,
-    @Arg('limit', {nullable: true, defaultValue: 0}) take: number
+    @Arg('limit', {nullable: true, defaultValue: 100}) take: number
     ): Promise<Product[]> {
-    return this.productService.getAll({parameter: inputParameter, direction: inputDirection}, skip, take);
+    return this.productService.getAll(filteredTag, {parameter: inputParameter, direction: inputDirection}, skip, take);
   }
 
   @Query(() => Product, { nullable: true })

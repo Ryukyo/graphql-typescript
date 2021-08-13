@@ -1,6 +1,8 @@
 import { Service } from 'typedi';
 import { Product } from '../entity/Product';
 import { CreateProductInput, UpdateProductInput } from '../../schema/products';
+import { Tag } from 'src/schema/tags';
+import { In } from 'typeorm';
 
 interface Sorting {
   parameter: "name" | "createdAt",
@@ -9,7 +11,7 @@ interface Sorting {
 
 @Service()
 export class ProductService {
-  getAll = async (sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
+  getAll = async (tag?: Tag, sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
     let pagination = {
       ...skip && { skip: skip },
       ...take && { take: take },
@@ -23,8 +25,12 @@ export class ProductService {
     if (skip || take) {
       return Product.find(pagination);
     }
-
-    return Product.find();
+    if (tag) {
+      // not working, this branch is never entered
+      // console.log("in tag")
+      return Product.find({relations: ["tag"], where: { tags: In([tag]) }});
+    }
+    return Product.find({relations: ["tag"]});
   };
 
   getOne = async (id: number): Promise<Product | undefined> => {
