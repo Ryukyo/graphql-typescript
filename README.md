@@ -4,7 +4,17 @@ API with PostgreSQL, Typescript, TypeORM and Type-GraphQL
 
 ## Getting Started
 
-.env File required to fill the variables in ormconfig.ts
+:warning: `.env` file in root is required to fill the variables in `ormconfig.ts` and when using Docker. The data should match the connection strings in the `docker-compose.yml` file
+The following format is used:
+
+```
+SERVER_PORT =
+DB_HOST =
+DB_PORT =
+DB_NAME =
+DB_USER =
+DB_PASS =
+```
 
 Install all required dependencies:
 
