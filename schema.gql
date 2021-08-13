@@ -5,7 +5,11 @@
 
 input CreateProductInput {
   name: String!
-  tags: [String!]!
+  tags: [TagInput!]
+}
+
+input CreateTagInput {
+  name: String!
 }
 
 """
@@ -15,23 +19,41 @@ scalar DateTime
 
 type Mutation {
   addProduct(ProductInput: CreateProductInput!): Product!
+  addTag(TagInput: CreateTagInput!): Tag!
   deleteProduct(id: Float!): Boolean!
+  deleteTag(id: Float!): Boolean!
   updateProduct(ProductInput: UpdateProductInput!, id: Float!): Product!
+  updateTag(TagInput: UpdateTagInput!, id: Float!): Tag!
 }
 
 type Product {
   createdAt: DateTime!
   id: Float!
   name: String!
-  tags: [String!]!
+  tags: [Tag!]
 }
 
 type Query {
   getProduct(id: Float!): Product
-  getProducts(direction: String = "ASC", limit: Float = 0, offset: Float = 0, sorting: String): [Product!]
+  getProducts(direction: String = "ASC", limit: Float = 100, offset: Float = 0, sorting: String, tags: TagInput): [Product!]
+  getTags: [Tag!]
+}
+
+type Tag {
+  id: Float
+  name: String!
+}
+
+input TagInput {
+  id: Float
+  name: String!
 }
 
 input UpdateProductInput {
   name: String
-  tags: [String!]
+  tags: [TagInput!]
+}
+
+input UpdateTagInput {
+  name: String
 }

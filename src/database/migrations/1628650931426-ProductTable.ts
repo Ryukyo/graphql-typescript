@@ -6,7 +6,7 @@ export class ProductTable1628650931426 implements MigrationInterface {
         queryRunner.query(`CREATE TABLE IF NOT EXISTS product
         (id SERIAL PRIMARY KEY, 
         name VARCHAR(100) NOT NULL,  
-        tags TEXT[],
+        FOREIGN KEY (tags) REFERENCES tag(name),
         created_at TIMESTAMP NOT NULL DEFAULT NOW())`);
     }
 
