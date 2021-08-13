@@ -4,6 +4,7 @@ import { buildSchema } from 'type-graphql';
 import { Container } from 'typedi';
 import express from 'express';
 import { ProductResolver } from './resolvers/products';
+import { TagResolver } from './resolvers/tags';
 import initializeDB from './database/index';
 
 const app = express();
@@ -11,7 +12,7 @@ const app = express();
 async function main() {
   await initializeDB();
   const schema = await buildSchema({
-    resolvers: [ProductResolver],
+    resolvers: [ProductResolver, TagResolver],
     container: Container,
     emitSchemaFile: true,
   });

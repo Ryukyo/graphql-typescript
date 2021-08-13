@@ -23,6 +23,11 @@ http://localhost:5000/graphql
 
 ## Sample Queries and Mutations
 
+In this variant, tags created with a product don't appear anywhere.\
+Tags can be created wth a separate mutation.
+
+### Products
+
 Create product
 
 ```
@@ -55,7 +60,7 @@ query {
 Get products sorted by name/date with direction and pagination
 
 ```
-query Query {
+query {
   getProducts(sorting: "createdAt", direction: "DESC", limit: 1, offset: 2) {
     name
     createdAt
@@ -94,5 +99,29 @@ Delete product by id
 ```
 mutation {
   deleteProduct(id: 2)
+}
+```
+
+### Tags
+
+Create a Tag
+
+```
+mutation {
+  addTag(TagInput: { name: "test" }) {
+    id
+    name
+  }
+}
+```
+
+Query all created tags
+
+```
+query {
+  getTags {
+    id
+    name
+  }
 }
 ```
