@@ -1,6 +1,7 @@
 import { Service } from 'typedi';
 import { Product } from '../entity/Product';
 import { CreateProductInput, UpdateProductInput } from '../../schema/products';
+import { In } from "typeorm"
 
 interface Sorting {
   parameter: "name" | "createdAt",
@@ -9,7 +10,7 @@ interface Sorting {
 
 @Service()
 export class ProductService {
-  getAll = async (sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
+  getAll = async (tag? : string, sorting? : Sorting, skip?: number, take?: number): Promise<Product[]> => {
     let pagination = {
       ...skip && { skip: skip },
       ...take && { take: take },
@@ -23,7 +24,16 @@ export class ProductService {
     if (skip || take) {
       return Product.find(pagination);
     }
-
+    if (tag) {
+      /* 
+      In current version it returns an error about a malformed array literal.
+      I would like to use a structure like the following:
+      .createQueryBuilder("products")
+      .where("products.tags = ANY ( :...tag )", { name: tag })
+      but this causes TS to complain about over 25 missing properties for createQueryBuilder
+      */
+      return Product.find({where: {tags : In([tag])}})
+    }
     return Product.find();
   };
 

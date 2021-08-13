@@ -16,8 +16,6 @@ import {
     @Column()
     name!: string;
   
-    // @OneToMany(type => Tag, tag => tag.name)
-    // @Column({ type: () => [Tag]})
     @Column({ type: 'text', array: true })
     tags!: string[];
   
