@@ -26,7 +26,13 @@ Install all required dependencies:
 npm install
 ```
 
-Start the development server
+Create table according to migrations (requires running PostgreSQL database):
+
+```
+npm run create-table
+```
+
+Start the development server:
 
 ```
 npm run dev
