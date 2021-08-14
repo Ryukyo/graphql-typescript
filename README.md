@@ -4,8 +4,8 @@ API with PostgreSQL, Typescript, TypeORM and Type-GraphQL
 
 ## Getting Started
 
-:warning: `.env` file in root is required to fill the variables in `ormconfig.ts` and when using Docker. The data should match the connection strings in the `docker-compose.yml` file
-The following format is used:
+:warning: `.env` file in root is required to fill the variables in `ormconfig.ts` and when using Docker in the `docker-compose.yml` file.\
+The following format is used, but in the current setup only URL is important:
 
 ```
 SERVER_PORT =
@@ -14,9 +14,10 @@ DB_PORT =
 DB_NAME =
 DB_USER =
 DB_PASS =
+DB_URL = postgres://postgres:secret_passw0rd@postgres:5432/database
 ```
 
-For using Docker (requires local Docker installation):
+For using Docker (requires local Docker/docker-compose installation):
 
 ```
 docker-compose up --build -d
