@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
-    env_file: .env
+    env_file: .docker.env
     environment:
       DATABASE_URL: ${DB_URL}
       NODE_ENV: development
@@ -20,7 +20,7 @@ services:
     ports:
       - "5432:5432"
     restart: always
-    env_file: .env
+    env_file: .docker.env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
