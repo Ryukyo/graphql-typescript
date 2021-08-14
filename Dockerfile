@@ -10,4 +10,4 @@ RUN npm install
 
 COPY .env .
 EXPOSE 5000
-CMD /wait && npm start
+CMD /wait && npm run create-table && npm start

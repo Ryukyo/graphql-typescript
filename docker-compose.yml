@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   graphql-api:
     container_name: graphql-api
@@ -7,8 +7,9 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
+    env_file: .env
     environment:
-      DATABASE_URL: postgres://postgres:secret_passw0rd@postgres:5432/database
+      DATABASE_URL: ${DB_URL}
       NODE_ENV: development
       PORT: 5000
     ports:
@@ -19,7 +20,8 @@ services:
     ports:
       - "5432:5432"
     restart: always
+    env_file: .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: secret_passw0rd
-      POSTGRES_DB: database
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
